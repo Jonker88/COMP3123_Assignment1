@@ -7,12 +7,17 @@ const Navbar = () => {
   const token = localStorage.getItem('token');
 
   const handleLogout = () => {
+    const onEmployeesRoute = location.pathname === '/employees' || location.pathname.startsWith('/employees/');
+    if (onEmployeesRoute) {
+      const ok = window.confirm('Are you sure you want to log out?');
+      if (!ok) return;
+    }
     localStorage.removeItem('token');
     navigate('/login');
   };
 
-  // Don't show navbar on login/signup pages
-  if (location.pathname === '/login' || location.pathname === '/signup') {
+  // Don't show navbar on login/signup/landing pages
+  if (location.pathname === '/' || location.pathname === '/login' || location.pathname === '/signup') {
     return null;
   }
 

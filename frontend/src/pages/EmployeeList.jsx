@@ -60,6 +60,7 @@ const EmployeeList = () => {
           <table className="employees-table">
             <thead>
               <tr>
+                <th>Photo</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
@@ -72,12 +73,23 @@ const EmployeeList = () => {
             <tbody>
               {employees.map((emp) => (
                 <tr key={emp.employee_id}>
+                  <td>
+                    {emp.photo ? (
+                      <img
+                        src={`http://localhost:3000${emp.photo}`}
+                        alt={`${emp.first_name} ${emp.last_name}`}
+                        className="thumb"
+                      />
+                    ) : (
+                      <div className="thumb placeholder">N/A</div>
+                    )}
+                  </td>
                   <td>{emp.first_name}</td>
                   <td>{emp.last_name}</td>
                   <td>{emp.email}</td>
                   <td>{emp.position}</td>
                   <td>{emp.department}</td>
-                  <td>${emp.salary.toFixed(2)}</td>
+                  <td>${emp.salary ? emp.salary.toFixed(2) : '0.00'}</td>
                   <td className="actions">
                     <button
                       className="btn btn-sm btn-info"

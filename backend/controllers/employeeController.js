@@ -11,7 +11,8 @@ export const getAllEmployees = async (req, res, next) => {
       position: d.position,
       salary: d.salary,
       date_of_joining: d.date_of_joining,
-      department: d.department
+      department: d.department,
+      photo: d.photo || null
     }));
     res.status(200).json(out);
   } catch (err) {
@@ -55,7 +56,8 @@ export const getEmployeeById = async (req, res, next) => {
       position: d.position,
       salary: d.salary,
       date_of_joining: d.date_of_joining,
-      department: d.department
+      department: d.department,
+      photo: d.photo || null
     });
   } catch (err) {
     next(err);
