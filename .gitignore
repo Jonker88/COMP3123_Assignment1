@@ -1,27 +1,68 @@
-# Node.js dependencies
-node_modules/
-
-# Logs
+# ============================
+# Global
+# ============================
+.DS_Store
+Thumbs.db
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# nodemon-related
-.pids
-*.pid
-tmp/
-coverage/
+# Env files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
 
-# IDE/editor configs
+# vscode files
 .vscode/
 .idea/
 
-# OS-specific
-.DS_Store
-Thumbs.db
+# OS / editor files
+*.swp
+*.swo
+*.tmp
 
-# Test artifacts
-test/fixtures/test*
+# Docker
+# Ignore local data volumes
+mongo_data/
+docker-data/
+*.pid
 
-# Optional: exclude environment files
-.env
-.env.local
+# ============================
+# Backend
+# ============================
+backend/node_modules/
+backend/package-lock.json
+backend/uploads/*
+
+# Ignore uploaded employee photos (optional)
+backend/uploads/
+!backend/uploads/.gitkeep
+
+# Ignore build artifacts
+backend/dist/
+backend/build/
+
+# ============================
+# Frontend
+# ============================
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/.cache/
+
+# React environment files
+frontend/.env
+frontend/.env.local
+
+# CRA build stats
+frontend/*.json
+frontend/*.map
+
+# Ignore coverage files
+coverage/
+frontend/coverage/
+backend/coverage/

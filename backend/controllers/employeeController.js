@@ -21,7 +21,13 @@ export const getAllEmployees = async (req, res, next) => {
 
 export const createEmployee = async (req, res, next) => {
   try {
-    const emp = await Employee.create(req.body);
+    const data = { ...req.body };
+
+    if (req.file) {
+      data.photo = `/uploads/${req.file.filename}`;
+    }
+
+    const emp = await Employee.create(data);
     res.status(201).json({
       message: 'Employee created successfully.',
       employee_id: String(emp._id)
@@ -59,7 +65,13 @@ export const getEmployeeById = async (req, res, next) => {
 export const updateEmployee = async (req, res, next) => {
   try {
     const { eid } = req.params;
-    const d = await Employee.findByIdAndUpdate(eid, req.body, { new: true, runValidators: true });
+    const updates = { ...req.body };
+
+    if (req.file) {
+      updates.photo = `/uploads/${req.file.filename}`;
+    }
+
+    const d = await Employee.findByIdAndUpdate(eid, updates, { new: true, runValidators: true });
     if (!d) return res.status(404).json({ status: false, message: 'Employee not found' });
 
     res.status(200).json({ message: 'Employee details updated successfully.' });
